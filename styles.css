@@ -90,6 +90,11 @@ img {
   align-items: center;
 }
 
+.hero-copy {
+  width: 100%;
+  text-align: center;
+}
+
 .eyebrow {
   margin: 0 0 10px;
   color: var(--accent);
@@ -110,6 +115,8 @@ h1 {
   font-size: clamp(3rem, 6vw, 5.4rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
+  max-width: 14ch;
+  margin: 0 auto;
 }
 
 h2 {
@@ -138,12 +145,13 @@ h3 {
 }
 
 .authors {
-  margin: 16px 0 0;
+  margin: 16px auto 0;
   font-size: 0.98rem;
+  max-width: 100%;
 }
 
 .affiliations {
-  margin: 10px 0 0;
+  margin: 10px auto 0;
   font-size: 0.94rem;
   line-height: 1.7;
 }
@@ -151,6 +159,7 @@ h3 {
 .button-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 14px;
   margin: 28px 0;
 }

@@ -112,10 +112,11 @@ h3 {
 
 h1 {
   font-family: "Instrument Serif", serif;
-  font-size: clamp(2.5rem, 4.6vw, 4.4rem);
-  line-height: 1.02;
+  width: 100%;
+  font-size: clamp(2.2rem, 3.8vw, 3.8rem);
+  line-height: 1.06;
   letter-spacing: -0.03em;
-  max-width: 30ch;
+  max-width: min(96vw, 1500px);
   margin: 0 auto;
 }
 

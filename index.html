@@ -33,11 +33,10 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Project Page</p>
-          <p class="paper-title">
+          <h1>
             DiffPlace: Street View Generation via Place-Controllable Diffusion Model
             Enhancing Place Recognition
-          </p>
-          <h1>Street View Generation with Background-Level Place Control</h1>
+          </h1>
           <p class="authors">
             Ji Li, Zhiwei Li, Shihao Li, Zhenjiang Yu, Boyang Wang, Haiou Liu
           </p>
@@ -58,30 +57,7 @@
             <a class="button secondary" href="https://github.com/jerichoji/DiffPlace" target="_blank" rel="noreferrer">Code</a>
             <a class="button secondary" href="#results">See Results</a>
           </div>
-
-          <div class="meta-grid">
-            <div class="meta-card">
-              <span class="meta-label">Core Idea</span>
-              <strong>Place-controllable diffusion</strong>
-            </div>
-            <div class="meta-card">
-              <span class="meta-label">Main Gain</span>
-              <strong>57.6 AR@1 on generated validation scenes</strong>
-            </div>
-            <div class="meta-card">
-              <span class="meta-label">Training Benefit</span>
-              <strong>+5.5 AR@1 for MixVPR on Pitts30k-test</strong>
-            </div>
-          </div>
         </div>
-
-        <figure class="hero-visual card">
-          <img src="graphical_abstract.png" alt="Graphical abstract of DiffPlace">
-          <figcaption>
-            DiffPlace closes the loop between controllable generation and visual place
-            recognition by synthesizing place-consistent multi-view street scenes.
-          </figcaption>
-        </figure>
       </div>
     </header>
 
@@ -89,7 +65,6 @@
       <section id="abstract" class="section">
         <div class="section-heading">
           <p class="eyebrow">Abstract</p>
-          <h2>Why DiffPlace</h2>
         </div>
         <div class="abstract-panel card">
           <p>
@@ -284,28 +259,6 @@
             <img src="site-assets/viz_attn_des.png" alt="Attention map extracted by CricaVPR">
             <figcaption>
               After augmented training, attention shifts toward buildings and stable place cues.
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="eyebrow">Limitations</p>
-          <h2>Where the model still struggles</h2>
-        </div>
-        <div class="two-column">
-          <div class="card notes-card">
-            <ul>
-              <li>Dense vegetation scenes remain hard because place embeddings capture unstructured foliage poorly.</li>
-              <li>Very dark reference images can break generation fidelity and place consistency.</li>
-              <li>Photorealism alone does not guarantee better place recognition utility.</li>
-            </ul>
-          </div>
-          <figure class="card media-card">
-            <img src="site-assets/failure_case.png" alt="Failure cases of DiffPlace">
-            <figcaption>
-              Representative failure cases from the paper, especially plant-heavy and low-light scenes.
             </figcaption>
           </figure>
         </div>

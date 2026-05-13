@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiffPlace: Place-Controllable Street View Generation</title>
+  <meta
+    name="description"
+    content="Project page for DiffPlace, a place-controllable diffusion model for street view generation and visual place recognition."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <span class="brand">DiffPlace</span>
+        <div class="topbar-links">
+          <a href="#abstract">Abstract</a>
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="#citation">Citation</a>
+          <a href="diffusion.pdf" target="_blank" rel="noreferrer">Paper PDF</a>
+        </div>
+      </nav>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Project Page</p>
+          <p class="paper-title">
+            DiffPlace: Street View Generation via Place-Controllable Diffusion Model
+            Enhancing Place Recognition
+          </p>
+          <h1>Street View Generation with Background-Level Place Control</h1>
+          <p class="authors">
+            Ji Li, Zhiwei Li, Shihao Li, Zhenjiang Yu, Boyang Wang, Haiou Liu
+          </p>
+          <p class="affiliations">
+            The University of Hong Kong<br>
+            Beijing Institute of Technology
+          </p>
+          <p class="paper-status">arXiv:2602.11875, accepted by ICRA 2026</p>
+          <p class="lead">
+            DiffPlace introduces a place-ID controller for multi-view diffusion, enabling
+            generated street scenes to preserve consistent background structure while still
+            editing weather and foreground objects.
+          </p>
+
+          <div class="button-row">
+            <a class="button primary" href="diffusion.pdf" target="_blank" rel="noreferrer">Read Paper</a>
+            <a class="button secondary" href="https://arxiv.org/abs/2602.11875" target="_blank" rel="noreferrer">ArXiv</a>
+            <a class="button secondary" href="https://github.com/jerichoji/DiffPlace" target="_blank" rel="noreferrer">Code</a>
+            <a class="button secondary" href="#results">See Results</a>
+          </div>
+
+          <div class="meta-grid">
+            <div class="meta-card">
+              <span class="meta-label">Core Idea</span>
+              <strong>Place-controllable diffusion</strong>
+            </div>
+            <div class="meta-card">
+              <span class="meta-label">Main Gain</span>
+              <strong>57.6 AR@1 on generated validation scenes</strong>
+            </div>
+            <div class="meta-card">
+              <span class="meta-label">Training Benefit</span>
+              <strong>+5.5 AR@1 for MixVPR on Pitts30k-test</strong>
+            </div>
+          </div>
+        </div>
+
+        <figure class="hero-visual card">
+          <img src="graphical_abstract.png" alt="Graphical abstract of DiffPlace">
+          <figcaption>
+            DiffPlace closes the loop between controllable generation and visual place
+            recognition by synthesizing place-consistent multi-view street scenes.
+          </figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <main>
+      <section id="abstract" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Abstract</p>
+          <h2>Why DiffPlace</h2>
+        </div>
+        <div class="abstract-panel card">
+          <p>
+            Generative models have advanced significantly in realistic image synthesis, with
+            diffusion models excelling in quality and stability. Recent multi-view diffusion
+            models improve 3D-aware street view generation, but they struggle to produce
+            place-aware and background-consistent urban scenes from text, BEV maps, and object
+            bounding boxes. This limits their effectiveness in generating realistic samples for
+            place recognition tasks.
+          </p>
+          <p>
+            DiffPlace introduces a place-ID controller that maps place embeddings into a fixed
+            CLIP space through linear projection, a perceiver transformer, and contrastive
+            learning. This lets the model synthesize scenes with consistent background buildings
+            while flexibly changing foreground objects and weather.
+          </p>
+          <p>
+            Experiments show that DiffPlace improves both generation quality and augmented
+            training support for visual place recognition, making scene-level controllable
+            synthesis more useful for autonomous driving.
+          </p>
+        </div>
+      </section>
+
+      <section id="method" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Method</p>
+          <h2>Place-ID controller inside a multi-view diffusion pipeline</h2>
+        </div>
+        <div class="two-column">
+          <figure class="card media-card">
+            <img src="site-assets/fig2.png" alt="Overview of the DiffPlace pipeline">
+            <figcaption>
+              The generator combines map, box, text, camera, and place-ID features to produce
+              multi-view images with controllable background and foreground elements.
+            </figcaption>
+          </figure>
+
+          <div class="card notes-card">
+            <h3>What changes relative to prior work</h3>
+            <ul>
+              <li>Uses a dedicated place-ID encoder instead of overloading text prompts.</li>
+              <li>Aligns place embeddings with CLIP space for stable conditioning.</li>
+              <li>Preserves background identity while still supporting object and weather edits.</li>
+              <li>Targets generation that is useful for downstream place recognition training.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Results</p>
+          <h2>Better place controllability, stronger retrieval-oriented generation</h2>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric-card card">
+            <span class="metric-value">57.6</span>
+            <span class="metric-name">AR@1</span>
+            <p>On generated validation scenes, beating MagicDrive by 21.7 points.</p>
+          </article>
+          <article class="metric-card card">
+            <span class="metric-value">75.4</span>
+            <span class="metric-name">AR@5</span>
+            <p>Best place recognition consistency among compared generation methods.</p>
+          </article>
+          <article class="metric-card card">
+            <span class="metric-value">13.4</span>
+            <span class="metric-name">FID</span>
+            <p>Competitive realism while improving background-level controllability.</p>
+          </article>
+          <article class="metric-card card">
+            <span class="metric-value">+5.5</span>
+            <span class="metric-name">MixVPR AR@1 gain</span>
+            <p>Augmented training improvement on Pitts30k-test over no synthetic data.</p>
+          </article>
+        </div>
+
+        <figure class="card wide-media">
+          <img src="site-assets/main.png" alt="Qualitative realism and controllability comparison">
+          <figcaption>
+            DiffPlace generates backgrounds that are more recognizable and place-consistent
+            than BEVGen, MagicDrive, and DualDiff.
+          </figcaption>
+        </figure>
+
+        <div class="results-grid">
+          <div class="card">
+            <h3>Validation performance on generated images</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>FID</th>
+                    <th>AR@1</th>
+                    <th>AR@5</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>BEVGen</td>
+                    <td>25.6</td>
+                    <td>31.2</td>
+                    <td>60.8</td>
+                  </tr>
+                  <tr>
+                    <td>BEVControl</td>
+                    <td>24.8</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td>MagicDrive</td>
+                    <td>16.2</td>
+                    <td>35.9</td>
+                    <td>64.1</td>
+                  </tr>
+                  <tr>
+                    <td>DualDiff</td>
+                    <td><strong>11.0</strong></td>
+                    <td>48.7</td>
+                    <td>68.9</td>
+                  </tr>
+                  <tr class="highlight-row">
+                    <td>DiffPlace</td>
+                    <td>13.4</td>
+                    <td><strong>57.6</strong></td>
+                    <td><strong>75.4</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Augmented training support on Pitts30k-test</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Training data</th>
+                    <th>MixVPR AR@1</th>
+                    <th>MixVPR AR@5</th>
+                    <th>CricaVPR AR@1</th>
+                    <th>CricaVPR AR@5</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>No synthetic data</td>
+                    <td>83.5</td>
+                    <td>90.3</td>
+                    <td>90.9</td>
+                    <td>96.0</td>
+                  </tr>
+                  <tr>
+                    <td>MagicDrive</td>
+                    <td>84.2</td>
+                    <td>91.1</td>
+                    <td>90.3</td>
+                    <td>95.7</td>
+                  </tr>
+                  <tr class="highlight-row">
+                    <td>DiffPlace</td>
+                    <td><strong>89.7</strong></td>
+                    <td><strong>95.2</strong></td>
+                    <td><strong>92.9</strong></td>
+                    <td><strong>96.8</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Interpretability</p>
+          <h2>Generated data shifts attention toward background landmarks</h2>
+        </div>
+        <div class="two-column">
+          <figure class="card media-card">
+            <img src="site-assets/fig6.png" alt="Place controllability under weather and object edits">
+            <figcaption>
+              DiffPlace keeps place identity stable even when weather and objects change.
+            </figcaption>
+          </figure>
+          <figure class="card media-card">
+            <img src="site-assets/viz_attn_des.png" alt="Attention map extracted by CricaVPR">
+            <figcaption>
+              After augmented training, attention shifts toward buildings and stable place cues.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Limitations</p>
+          <h2>Where the model still struggles</h2>
+        </div>
+        <div class="two-column">
+          <div class="card notes-card">
+            <ul>
+              <li>Dense vegetation scenes remain hard because place embeddings capture unstructured foliage poorly.</li>
+              <li>Very dark reference images can break generation fidelity and place consistency.</li>
+              <li>Photorealism alone does not guarantee better place recognition utility.</li>
+            </ul>
+          </div>
+          <figure class="card media-card">
+            <img src="site-assets/failure_case.png" alt="Failure cases of DiffPlace">
+            <figcaption>
+              Representative failure cases from the paper, especially plant-heavy and low-light scenes.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="citation" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Citation</p>
+          <h2>BibTeX</h2>
+        </div>
+        <div class="results-grid">
+          <div class="card notes-card">
+            <h3>Reference</h3>
+            <p class="citation-text">
+              Li, J., Li, Z., Li, S., Yu, Z., Wang, B., and Liu, H. DiffPlace:
+              Street View Generation via Place-Controllable Diffusion Model
+              Enhancing Place Recognition. arXiv:2602.11875, 2026.
+            </p>
+            <div class="button-row compact">
+              <a class="button secondary" href="https://arxiv.org/abs/2602.11875" target="_blank" rel="noreferrer">Open ArXiv</a>
+              <a class="button secondary" href="https://github.com/jerichoji/DiffPlace" target="_blank" rel="noreferrer">Open Code</a>
+            </div>
+          </div>
+          <div class="card bibtex-card">
+            <h3>BibTeX</h3>
+            <pre><code>@article{li2026diffplace,
+  title={DiffPlace: Street View Generation via Place-Controllable Diffusion Model Enhancing Place Recognition},
+  author={Li, Ji and Li, Zhiwei and Li, Shihao and Yu, Zhenjiang and Wang, Boyang and Liu, Haiou},
+  journal={arXiv preprint arXiv:2602.11875},
+  year={2026},
+  url={https://arxiv.org/abs/2602.11875}
+}</code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>DiffPlace: Street View Generation via Place-Controllable Diffusion Model Enhancing Place Recognition</p>
+      <p>
+        Authors: Ji Li, Zhiwei Li, Shihao Li, Zhenjiang Yu, Boyang Wang, Haiou Liu
+      </p>
+      <p>The University of Hong Kong; Beijing Institute of Technology</p>
+      <p><a href="diffusion.pdf" target="_blank" rel="noreferrer">Open paper PDF</a> · <a href="https://arxiv.org/abs/2602.11875" target="_blank" rel="noreferrer">ArXiv</a> · <a href="https://github.com/jerichoji/DiffPlace" target="_blank" rel="noreferrer">Code</a></p>
+    </footer>
+  </div>
+</body>
+</html>

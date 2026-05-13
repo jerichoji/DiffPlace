@@ -1,0 +1,440 @@
+:root {
+  --bg: #f4efe4;
+  --paper: rgba(255, 252, 245, 0.9);
+  --paper-strong: #fffaf0;
+  --ink: #18261f;
+  --muted: #536157;
+  --line: rgba(24, 38, 31, 0.12);
+  --accent: #bc4f2f;
+  --accent-soft: #e9b98f;
+  --forest: #29463a;
+  --shadow: 0 24px 70px rgba(39, 35, 22, 0.12);
+  --radius: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(233, 185, 143, 0.45), transparent 28%),
+    radial-gradient(circle at top right, rgba(41, 70, 58, 0.18), transparent 26%),
+    linear-gradient(180deg, #f3ebdb 0%, #f6f2ea 45%, #eee6d7 100%);
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.page-shell {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 64px;
+}
+
+.topbar,
+.hero-grid,
+.section,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 18px;
+  margin-bottom: 28px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 249, 238, 0.7);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.topbar-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.topbar a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.hero {
+  padding: 8px 0 24px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+h1 {
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(3rem, 6vw, 5.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+h3 {
+  margin-bottom: 18px;
+  font-size: 1.15rem;
+}
+
+.lead {
+  max-width: 58ch;
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.paper-title,
+.authors,
+.affiliations,
+.paper-status,
+.citation-text {
+  color: var(--muted);
+}
+
+.paper-title {
+  max-width: 70ch;
+  margin: 10px 0 12px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.authors {
+  margin: 16px 0 0;
+  font-size: 0.98rem;
+}
+
+.affiliations,
+.paper-status {
+  margin: 10px 0 0;
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.button-row.compact {
+  margin: 18px 0 0;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.button.primary {
+  background: var(--forest);
+  color: #fff8ef;
+}
+
+.button.secondary {
+  border: 1px solid var(--line);
+  background: rgba(255, 251, 244, 0.85);
+}
+
+.meta-grid,
+.metric-grid,
+.results-grid,
+.two-column {
+  display: grid;
+  gap: 18px;
+}
+
+.meta-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metric-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 22px;
+}
+
+.results-grid,
+.two-column {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.hero-visual,
+.media-card,
+.wide-media {
+  padding: 18px;
+}
+
+.hero-visual img,
+.media-card img,
+.wide-media img {
+  border-radius: 18px;
+  border: 1px solid rgba(24, 38, 31, 0.08);
+  background: var(--paper-strong);
+}
+
+.hero-visual figcaption,
+.media-card figcaption,
+.wide-media figcaption {
+  margin-top: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.meta-card,
+.metric-card,
+.notes-card,
+.abstract-panel,
+.footer,
+.results-grid > .card {
+  padding: 22px;
+}
+
+.meta-label,
+.metric-name {
+  display: block;
+  color: var(--muted);
+}
+
+.meta-card strong {
+  display: block;
+  margin-top: 8px;
+  line-height: 1.45;
+}
+
+.section {
+  margin-top: 32px;
+}
+
+.section-heading {
+  margin-bottom: 20px;
+}
+
+.abstract-panel p {
+  margin: 0 0 16px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.abstract-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.notes-card ul {
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.citation-text {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.metric-card {
+  min-height: 180px;
+}
+
+.metric-value {
+  display: block;
+  font-family: "Instrument Serif", serif;
+  font-size: 3.4rem;
+  line-height: 0.95;
+  color: var(--forest);
+}
+
+.metric-name {
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.metric-card p {
+  margin: 14px 0 0;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.wide-media {
+  margin-bottom: 18px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.bibtex-card {
+  padding: 22px;
+}
+
+.bibtex-card pre {
+  margin: 0;
+  padding: 18px;
+  overflow-x: auto;
+  border-radius: 18px;
+  background: #1f2c26;
+  color: #f7f2e8;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.96rem;
+}
+
+th,
+td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.highlight-row {
+  background: rgba(233, 185, 143, 0.18);
+}
+
+.footer {
+  margin-top: 32px;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.footer p {
+  margin: 0;
+}
+
+@media (max-width: 980px) {
+  .hero-grid,
+  .metric-grid,
+  .meta-grid,
+  .results-grid,
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    border-radius: 28px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(100% - 20px, 1200px);
+    padding-top: 10px;
+  }
+
+  h1 {
+    font-size: 2.8rem;
+  }
+
+  .lead,
+  .abstract-panel p,
+  .metric-card p,
+  .notes-card ul,
+  .hero-visual figcaption,
+  .media-card figcaption,
+  .wide-media figcaption,
+  .footer {
+    line-height: 1.6;
+  }
+
+  .meta-card,
+  .metric-card,
+  .notes-card,
+  .abstract-panel,
+  .footer,
+  .results-grid > .card,
+  .hero-visual,
+  .media-card,
+  .wide-media {
+    padding: 16px;
+  }
+
+  th,
+  td {
+    padding: 12px 10px;
+  }
+}

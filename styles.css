@@ -115,7 +115,7 @@ h1 {
   font-size: clamp(3rem, 6vw, 5.4rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
-  max-width: 14ch;
+  max-width: 22ch;
   margin: 0 auto;
 }
 
@@ -139,6 +139,7 @@ h3 {
 }
 
 .authors,
+.corresponding-author,
 .affiliations,
 .citation-text {
   color: var(--muted);
@@ -148,6 +149,11 @@ h3 {
   margin: 16px auto 0;
   font-size: 0.98rem;
   max-width: 100%;
+}
+
+.corresponding-author {
+  margin: 8px auto 0;
+  font-size: 0.92rem;
 }
 
 .affiliations {
